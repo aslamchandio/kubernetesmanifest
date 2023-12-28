@@ -19,7 +19,7 @@ spec:
     spec:
       containers:
         - name: first-deployment
-          image: aslam24/project-app:7
+          image: aslam24/project-app:8
           ports:
             - containerPort: 80 
 
