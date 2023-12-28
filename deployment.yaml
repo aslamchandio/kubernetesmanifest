@@ -1,38 +1,42 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  creationTimestamp: null
+  name: firt-deployment
   labels:
-    app: flaskdemo
-  name: flaskdemo
-spec:
+    app:  first-deployment
+
+spec:  
   replicas: 3
   selector:
     matchLabels:
-      app: flaskdemo
-  strategy: {}
+      app: first-deployment
+      
   template:
     metadata:
-      creationTimestamp: null
+      name: first-deployment
       labels:
-        app: flaskdemo
+        app: first-deployment
     spec:
       containers:
-      - image: aslam24/project-repo:4
-        name: flaskdemo
-        resources: {}
-status: {}
+        - name: first-deployment
+          image: aslam24/project-app:latest
+          ports:
+            - containerPort: 80 
+
 ---
-apiVersion: v1
+
+apiVersion: v1 
 kind: Service
-metadata:
-  name: lb-service
+metadata: 
+  name: deployment-lb-service
   labels:
-    app: lb-service
+    app: deployment-lb-service
+
 spec:
   type: LoadBalancer
-  ports:
-  - port: 80
-    targetPort: 5000
   selector:
-    app: flaskdemo
+    app: first-deployment
+  ports:
+    - name: http
+      port: 80
+      targetPort: 80
