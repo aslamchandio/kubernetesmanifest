@@ -18,7 +18,7 @@ spec:
         app: flaskdemo
     spec:
       containers:
-      - image: aslam24/project-repo:6
+      - image: aslam24/project-repo:latest
         name: flaskdemo
         resources: {}
 status: {}
